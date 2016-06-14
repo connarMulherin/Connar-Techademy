@@ -45,17 +45,33 @@ testPhotos.pushObject(testimg4);
 export default Ember.Controller.extend({
 	photos: testPhotos,
 	searchField: '',
-	filteredPhotos: testPhotos,
+	filteredPhotos: function () {
+		var filter = this.get('searchField');
+		var rx = new RegExp(filter, 'gi');
+		var photos = this.get('photos');
+
+		return photos.filter(function(photo){
+			return photo.get('title').match(rx) || photo.get('username').match(rx);
+		});
+	}.property('photos','searchField'),
 	actions: {
 		search: function () {
-			var filter = this.get('searchField');
-			var rx = new RegExp(filter, 'gi');
-			var photos = this.get('photos');
-			this.set('filteredPhotos',
-				photos.filter(function(photo){
-					return photo.get('title').match(rx) || photo.get('username').match(rx);
-				})
-			);
+			this.get('filteredPhotos');
 		}
 	}
 });
+actions: {
+        search function () {
+               this.get('filteredPhotos');
+        },
+        getPhotos: function(){
+                var apiKey = 'bcbea882eddd93c23463005e66c80e44';
+                var host = 'https://api.flickr.com/services/rest/';
+                var method = "flicker.tags.gettClusterPhotos";
+                var tag = "hi";
+                var requestURL = host + "?method"+method + "api_key"+apiKey+"&tag="+tag+"&format=json&nojsoncallback=1";
+                Ember.$.getJSON(requestURL, function(data)
+                        consol.log(data);
+                });
+        },
+}

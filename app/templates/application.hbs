@@ -6,7 +6,10 @@
 				<div> class="navbar-right search-field"
 					{{#bs-form formLayout="inline" action="search"}}
 							<label> class="control-label">Search By Name </label>
-							{{bs-input type="text" value=searchField}}
+							{{bs-input type="text" value=searchField placeholder="search something"}}
+							<button type="submit" class="bbtn btn-default">
+									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							</button>
 					{{/bs-form}}
 				</div>
 		</div>
