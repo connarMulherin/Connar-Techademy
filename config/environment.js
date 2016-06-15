@@ -17,7 +17,7 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
-    contentSecurityPolicy: {
+  contentSecurityPolicy: {
     'default-src': "'self' ",
     'script-src': "'self' ", // Allow scripts from self only, this prevents injection and XSS attacks
     'font-src': "'self' http: https:", // Allow fonts to be loaded from self or any http/https source
@@ -27,7 +27,6 @@ module.exports = function(environment) {
     'media-src': "'self' "
   }
   };
-
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
